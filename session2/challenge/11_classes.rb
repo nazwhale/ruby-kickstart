@@ -74,8 +74,8 @@ attr_accessor 'bottles'
       end
     end
 
-    write = remaining  # How many ones remaining to write out?
-    remaining  = 0     # Subtract off those ones.
+    write = remaining  
+    remaining  = 0
 
     if write > 0
       numString = numString + onesPlace[write-1]
