@@ -29,4 +29,23 @@
 # shared [1,2,3], [3,2,1]            # => [{1=>[true, true], 2=>[true, true], 3=>[true, true]}, [1, 2, 3]]
 
 def shared(a, b)
+  #array of all objects
+  all = (a+b).uniq
+  #array of shared objects
+  both = a.select do |n|
+    b.include? n
+  end
+  #hash to store values
+  hash = {}
+  #iterate through all, if in a, set first nil to true etc.
+  all.each do |n|
+    if a.include?(n) && b.include?(n)
+      hash[n] = [true,true]
+    elsif a.include?(n) && b.include?(n) == false
+      hash[n] = [true,nil]
+    elsif a.include?(n) == false && b.include?(n)
+      hash[n] = [nil,true]
+    end
+  end
+  [hash, both]
 end
