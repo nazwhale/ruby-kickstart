@@ -17,3 +17,10 @@
 # match_maker true,  true,  true, true, nil     # => [false, true]
 # match_maker true,  true,  true, 0, nil        # => [false, true]
 
+def match_maker(determiner, *elements)
+  arr = []
+  elements.each_slice 2 do |e,i|
+    determiner ? (!!e == !!i ? arr << false : arr << true ) : (!!e == !!i ? arr << true : arr << false)
+  end
+  arr
+end
