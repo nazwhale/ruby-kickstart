@@ -8,3 +8,25 @@
 # staircase 4  # => {1 => [], 3 => [2]}
 # staircase 5  # => {1 => [], 3 => [2], 5 =>[2, 4]}
 
+#given n >= 0
+
+def staircase(n)
+  hash = {}
+  arr = []
+  r = n
+
+  until r == 0
+    arr.unshift(r)
+    r -= 1
+  end
+
+  evens = arr.select {|v| v.even?}
+  odds = arr.select {|v| v.odd?}
+
+  a = 0
+  until a == odds.length
+    hash[odds[a]] = evens[0...a]
+    a += 1
+  end
+  hash
+end
