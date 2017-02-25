@@ -24,6 +24,12 @@
 #                      <li style='color:#0000FF;font-family:"Courier New", "Lucida Console"'>football</li>
 #                      </ol>
 
+
+# modify it such that it also accepts a color (whose values are red("#FF0000"), green("#00FF00"), and blue(#0000FF) )
+# if the color is set, then it should show up in the style
+# It should also not be necessary to pass in the hash, if you don't want to specify options
+#
+
 class HTMLTag
   FONTS = {
     :serif      => '"Times New Roman", "Georgia"',
@@ -31,10 +37,16 @@ class HTMLTag
     :monospace  => '"Courier New", "Lucida Console"'
   }
 
+  COLORS = {
+    :red => "#FF0000",
+    :green => "#00FF00",
+    :blue => "#0000FF"
+  }
+
   attr_accessor :name, :innerHTML, :options
 
   # options: :multiline should be true or false
-  def initialize(name, innerHTML, options)
+  def initialize(name, innerHTML, options={})
     @name, @innerHTML, @options = name, innerHTML, options
   end
 
@@ -43,9 +55,21 @@ class HTMLTag
     FONTS[font]
   end
 
+  def color
+    color = options[:color]
+    COLORS[color]
+  end
+
   def style
-    return nil unless options[:font]
-    "style='font-family:#{font}'"
+    if options[:color] && options[:font]
+      "style='font-family:#{font};color:#{color};'"
+    elsif options[:color]
+      "style='color:#{color};'"
+    elsif options[:font]
+      "style='font-family:#{font}'"
+    else
+      nil
+    end
   end
 
   def to_s
