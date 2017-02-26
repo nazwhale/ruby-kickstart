@@ -38,3 +38,9 @@
 # middle head                        # => 3
 # head = {:data => 6, :next => head}
 # middle head                        # => 3
+
+def middle(list)
+  size = list[:data]
+  size % 2 == 0 ? size / 2 : size / 2 + 1
+
+end
