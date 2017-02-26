@@ -15,3 +15,12 @@
 # head = {:data => 6, :next => head}
 # print_list head                    # >> "6\n5\n4\n3\n2\n1\n"
 
+def print_list(list)
+  str = ""
+  count = list[:data]
+  until count == 0
+    str << "#{count}\n"
+    count -= 1
+  end
+  print str
+end

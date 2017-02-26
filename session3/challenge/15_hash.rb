@@ -42,5 +42,4 @@
 def middle(list)
   size = list[:data]
   size % 2 == 0 ? size / 2 : size / 2 + 1
-
 end

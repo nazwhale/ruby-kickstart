@@ -7,3 +7,12 @@
 #
 # print_list_in_reverse head   # >> "1\n2\n"
 
+def print_list_in_reverse(list)
+  str = ""
+  count = 1
+  until count == list[:data] + 1
+    str << "#{count}\n"
+    count += 1
+  end
+  print str
+end
