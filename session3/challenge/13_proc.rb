@@ -52,5 +52,14 @@
 #   end
 # end       # => ["a", "m", "r", 1, 3, 4, 9, 2.5, 9.0, 25.8]
 
-def your_sort
+def your_sort(array, &sorter)
+  unless sorter
+    sorter = Proc.new {|a,b| a <=> b}
+  end
+  array.each_index do |i|
+    array.each_index do |v|
+      new = sorter.call(array[i], array[v])
+      array[i], array[v] = array[v], array[i] if new < 0
+    end
+  end
 end
