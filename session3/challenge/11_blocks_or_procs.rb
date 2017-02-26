@@ -29,6 +29,10 @@
 #   end
 # end
 
-
-def array_init
+def array_init(size=5, &block)
+  if block
+    arr = Array.new(size, &block)
+  else
+    Array.new(size).map!.with_index { |n,i|  n = "#{i*100}" }
+  end
 end
